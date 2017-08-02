@@ -13,6 +13,7 @@ public class MyApp {
 
     public static void main(String[] args) {
         SpringApplication.run(MyApp.class, args);
+        System.out.println("testing the branch");
     }
 
 //    @Bean
