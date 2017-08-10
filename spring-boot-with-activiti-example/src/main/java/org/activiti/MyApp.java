@@ -39,12 +39,13 @@ public class MyApp {
 
         return new InitializingBean() {
             public void afterPropertiesSet() throws Exception {
-
+                System.out.println("testing the conflict");
                 Group group = identityService.newGroup("user");
                 group.setName("users");
                 group.setType("security-role");
+                System.out.println("Again Testing the Conflict");
                 identityService.saveGroup(group);
-
+                  
                 User admin = identityService.newUser("admin");
                 admin.setPassword("admin");
                 identityService.saveUser(admin);
