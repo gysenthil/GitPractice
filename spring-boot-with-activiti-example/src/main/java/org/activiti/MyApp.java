@@ -8,6 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+
 @SpringBootApplication
 public class MyApp {
 
@@ -19,6 +26,13 @@ public class MyApp {
         System.out.println("commiting from master");
 
     }
+	private static ObjectMapper getMapperConfig() {
+		ObjectMapper mapper = new ObjectMapper(new JsonFactory());
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+		mapper.setSerializationInclusion(Include.NON_NULL);
+		return mapper;
+	}
 
 //    @Bean
 //    public CommandLineRunner init(final RepositoryService repositoryService,
